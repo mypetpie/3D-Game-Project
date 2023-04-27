@@ -35,6 +35,10 @@ public:
 	//catches compiler errors within the shader and outputs them to the console. Goes 0u0 if successful
 	void getShaderCompileErr(unsigned int shader, const char* filepath);
 
+	//handy functions for setting the values of certain types of uniforms. Greatly reduces how much noise we have to sift thru in main. Also makes it easier to understand. 
+	void setFloat(const char* uniform, GLfloat somefloat);
+	void setVec3(const char* uniformVec, GLfloat x, GLfloat y, GLfloat z);
+	void setVec4(const char* uniformVec, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
 };
 
 #endif // !SHADER_H

@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,6 +162,13 @@
     <ClCompile Include="Game\Source\GraphicsSrc\Mesh.cpp" />
     <ClCompile Include="vendor\glad\src\glad.c" />
     <ClCompile Include="vendor\glad\src\glad_wgl.c" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\fragDefault.frag" />
@@ -178,6 +185,14 @@
     <ClInclude Include="Game\include\Info.h" />
     <ClInclude Include="Game\include\Graphics\Texture.h" />
     <ClInclude Include="Game\include\Graphics\Mesh.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\planks.png" />

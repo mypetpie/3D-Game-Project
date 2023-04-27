@@ -85,3 +85,18 @@ void Shader::getShaderCompileErr(unsigned int shader, const char* filepath)
 		OGL3D_INFO("Shader.cpp | " << filepath << " compiled successfully 0u0")
 	}
 }
+
+void Shader::setFloat(const char* uniform, GLfloat somefloat)
+{
+}
+
+void Shader::setVec3(const char* uniformVec, GLfloat x, GLfloat y, GLfloat z)
+{
+	glUniform3f(glGetUniformLocation(ID, uniformVec), x, y, z);
+
+}
+
+void Shader::setVec4(const char* uniformVec, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+	glUniform4f(glGetUniformLocation(ID, uniformVec), x, y, z, w);
+}

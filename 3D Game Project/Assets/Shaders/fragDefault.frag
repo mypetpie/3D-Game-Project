@@ -1,5 +1,10 @@
 #version 330 core
 
+/*
+	BACKUP FOR FRAGDEFAULT.FRAG PRE MATERIAL IMPLEMENTATION
+*/
+
+//note: add ability for multiple lights and lmao. pointlight need to be struct and so should direc and spotlight tbh.
 
 // Output colors in RGBA
 out vec4 FragColor;
@@ -22,30 +27,41 @@ uniform vec4 lightColor;	//1, .55, 0 for a goodish torch color.
 uniform vec3 lightPos;
 uniform vec3 camPos;
 
-vec4 pointLight() //this is the code for a point light. emits light from a specific point in space. In this game, stuff like torches. 
+struct PointLight {
+	vec3 position;
+
+	float constant;
+	float linear;
+	float quadratic;
+
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+};
+#define NUM_POINT_LIGHTS 1		//changing this number defines how many lights are generated in the scene!!!! more lights than you have in the scene is bad bc the lights will still generate. 
+uniform PointLight pointLights[NUM_POINT_LIGHTS];
+
+vec4 pointLight(PointLight light) //this is the code for a point light. emits light from a specific point in space. In this game, stuff like torches. 
 {
 	//get distance to light. dist = length(vec lightPos - curPos)
-	vec3 lightVec = lightPos - curPos;
+	vec3 lightVec = light.position - curPos;
 	//calculate the intensity of the light based on how far away the light is. In real life this has an inverse square relationship, but in graphics we use quadratic formuler
+	//where a is the quadratic term and b is the linear term. Or, how fast it dies out, and how far it reaches. The last 1.0 is the constant 
 	float dist = length(lightVec);
-	float a = 1.0;
+	float a = 1.0;	//these two could go in pointLight struct but im lazy lol 
 	float b = 0.9;
-	//where a is the quadratic term and b is the linear term. Or, how fast it dies out, and how far it reaches. 
 	float inten = 1.0f / (a * dist * dist + b * dist + 1.0f); 
-
 
 	float ambient = 0.20f;
 	
+	//calculate diffuse - tells the computer that the intensity gets less as the angle increases. called diffuse lighting. dot = cosine of angle between them. we take the max value between that and 0
 	vec3 normal = normalize(Normal);
 	vec3 lightDirection = normalize(lightVec);
-
-	//calculate diffuse - tells the computer that the intensity gets less as the angle increases. called diffuse lighting. dot = cosine of angle between them. we take the max value between that and 0
 	float diffuse = max(dot(normal, lightDirection), 0.0f);  
 
 	//calculate specular light to add to the diffuse lighting in order to complete phong shading algo
-	float specularLight = 0.50f; //maximum intensity of specular light
+	float specularLight = 0.5f; //maximum intensity of specular light//this should be .5 as a default i just turned it down for the wood
 	vec3 viewDirection = normalize(camPos - curPos);
-	
 	//lightdirection is negative so that its toward the plane its reflecting and not away from it
 	vec3 reflectionDirection = reflect(-lightDirection, normal); 
 	
@@ -58,7 +74,7 @@ vec4 pointLight() //this is the code for a point light. emits light from a speci
 
 vec4 direcLight()	//light emitting from infinity away, meaning the light rays are all essentially parallel, like the sun.
 {
-	float ambient = 0.20f;
+	float ambient = 0.2f; 
 	
 	vec3 normal = normalize(Normal);
 	vec3 lightDirection = normalize(vec3(1.0f, 1.0f, 0.0f)); //this should point in the opposite direction you want it to. eg you want it pointing down then it must go up
@@ -67,12 +83,12 @@ vec4 direcLight()	//light emitting from infinity away, meaning the light rays ar
 	float diffuse = max(dot(normal, lightDirection), 0.0f);  
 
 	//calculate specular light to add to the diffuse lighting in order to complete phong lighting algo
-	float specularLight = 0.50f; //maximum intensity of specular light
+	float specularLight = 0.1f; //maximum intensity of specular light//this should be .5 as a default i just turned it down for the wood
 	vec3 viewDirection = normalize(camPos - curPos);
 	//lightdirection is negative so that its toward the plane its reflecting and not away from it
 	vec3 reflectionDirection = reflect(-lightDirection, normal); 
 	//larger the angle between view and reflectDirection, the weaker we want specular light to be. The higher the power, the more point-like the specular light will be.
-	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16); 
+	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16); //last value is shininess
 	float specular = specAmount * specularLight;
 
 	return (texture(diffuse0, texCoords) * (diffuse + ambient) + texture(specular0, texCoords).r * specular) * lightColor; //first calculate diffuse and ambient, then add specular values from map based on the angle of view etc. 
@@ -93,7 +109,7 @@ vec4 spotLight()	//lights a conic area. creates two cones by taking the cosine v
 	float diffuse = max(dot(normal, lightDirection), 0.0f);  
 
 	//calculate specular light to add to the diffuse lighting in order to complete phong shading algo
-	float specularLight = 0.50f; //maximum intensity of specular light
+	float specularLight = 0.50f; //maximum intensity of specular light//this should be .5 as a default i just turned it down for the wood
 	vec3 viewDirection = normalize(camPos - curPos);
 	
 	//lightdirection is negative so that its toward the plane its reflecting and not away from it
@@ -112,7 +128,11 @@ vec4 spotLight()	//lights a conic area. creates two cones by taking the cosine v
 
 void main()
 {
+	vec4 Lightoutput = vec4(0.0f);
+	//Lightoutput += direcLight();
 
+	for(int i = 0; i < NUM_POINT_LIGHTS; i++)
+        Lightoutput += pointLight(pointLights[i]);    
 
-	FragColor =  direcLight();
+	FragColor = Lightoutput;
 }

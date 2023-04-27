@@ -27,7 +27,7 @@ void Mesh::Draw(Shader& shader, Camera& camera)
 {
 	shader.activate();
 	VAO.Bind();
-
+	
 	//textures:
 	//find how many of each texture there are and then 
 	unsigned int numDiffuse = 0;
@@ -44,7 +44,7 @@ void Mesh::Draw(Shader& shader, Camera& camera)
 		{
 			num = std::to_string(numSpecular++);
 		}
-		//type + num stored as a c_str means our uniforms need to look like: diffuse0, diffuse1, etc. and specular0 specular1 etc. 
+		//type + num stored as a c_str means our uniforms need to look like: diffuse0, diffuse1, etc. and specular0 specular1 etc.
 		textures[i].texUnit(shader, (type + num).c_str(), i); //send the texture type to the shader program so they get however many of the right types of textures
 		textures[i].Bind();
 	}
