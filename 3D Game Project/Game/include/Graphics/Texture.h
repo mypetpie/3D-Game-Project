@@ -33,9 +33,11 @@ class Texture
 {
 public: 
 	GLuint ID;
-	const char* type;
+	std::string type;	//used to be const char* 
 	GLuint unit; 
+	std::string path; 
 
+	Texture();
 	Texture(const char* imagePath, const char* texType, GLuint slot, GLenum format, GLenum pixelType);
 	//Link texture coords to shader program's uniform. unit = which slot your texture is in.
 	void texUnit(Shader& shader, const char* uniform, GLuint unit);

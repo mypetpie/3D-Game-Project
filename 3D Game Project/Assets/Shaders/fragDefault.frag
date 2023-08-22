@@ -52,7 +52,7 @@ vec4 pointLight(PointLight light) //this is the code for a point light. emits li
 	float b = 0.9;
 	float inten = 1.0f / (a * dist * dist + b * dist + 1.0f); 
 
-	float ambient = 0.20f;
+	float ambient = 0.50f; //change this when you want the ambient light to be brighter :)
 	
 	//calculate diffuse - tells the computer that the intensity gets less as the angle increases. called diffuse lighting. dot = cosine of angle between them. we take the max value between that and 0
 	vec3 normal = normalize(Normal);
@@ -83,7 +83,7 @@ vec4 direcLight()	//light emitting from infinity away, meaning the light rays ar
 	float diffuse = max(dot(normal, lightDirection), 0.0f);  
 
 	//calculate specular light to add to the diffuse lighting in order to complete phong lighting algo
-	float specularLight = 0.1f; //maximum intensity of specular light//this should be .5 as a default i just turned it down for the wood
+	float specularLight = 1.0f; //maximum intensity of specular light//this should be .5 as a default i just turned it down for the wood
 	vec3 viewDirection = normalize(camPos - curPos);
 	//lightdirection is negative so that its toward the plane its reflecting and not away from it
 	vec3 reflectionDirection = reflect(-lightDirection, normal); 

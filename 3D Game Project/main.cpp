@@ -5,15 +5,12 @@
 #include <imgui_impl_opengl3.h>
 
 #include <Graphics/Mesh.h>
-
+#include <Graphics/Model.h>
 
 /*
 	Things of note:
 
-	* THE MODEL CLASS IS AN ARRAY OF MESHES. YOU DO ALL THE STUFF WE HAVE BEEN THINKING OF AUTOMATING IN THE FUCKINNG MODEL CLASS. DURR.  THATS WHERE IT GETS AUTOMATED.
-	  BECAUSE A MODEL IS A BIG ARRAY O MESHES. OUO
-	
-	* 
+	* Texture maps must be flipped vertically in an image editor before use here. It will look weird if you dont do that bc of stbi_flip_vertically_on_load(true)
 	
 	* 
 	
@@ -78,39 +75,6 @@
 const unsigned int width = 800;
 const unsigned int height = 800;
 
-//vertex coordinates for plane. Note - each texture has coords from 0-1, and OGL coords start in the bottom left at 0,0. giving a number above 1 makes it repeat itself
-Vertex vertices[] =
-{
-/*	    POSITIONS	     |						   Normals		     |     Colors					|	tex coords
-        Layout: 0	     |						   Layout: 1	     |     Layout: 2				|	Layout: 3	   */
-	Vertex{glm::vec3( 1.0f, 0.0f,  1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f)},
-	Vertex{glm::vec3( 1.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 1.0f)},
-	Vertex{glm::vec3(-1.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f)},
-	Vertex{glm::vec3(-1.0f, 0.0f,  1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
-};
-
-Vertex vertices2[] =
-{
-	/*	    POSITIONS	     |						   Normals		     |     Colors					|	tex coords
-			Layout: 0	     |						   Layout: 1	     |     Layout: 2				|	Layout: 3	   */
-		Vertex{glm::vec3( 0.5f, 0.0f, 0.5f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f)},
-		Vertex{glm::vec3( 0.5f, 0.0f,-0.5f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 1.0f)},
-		Vertex{glm::vec3(-0.5f, 0.0f,-0.5f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f)},
-		Vertex{glm::vec3(-0.5f, 0.0f, 0.5f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
-};
-
-// Indices for plane vertices order
-GLuint indices[] =
-{
-	0, 1, 2, // Bottom side
-	0, 2, 3, // Bottom side
-};
-
-GLuint indices2[] =
-{
-	0, 1, 2, // Bottom side
-	0, 2, 3, // Bottom side
-};
 
 
 Vertex lightVertices[]		//these vertices make backfaces front faces and front faces backfaces. lmao 
@@ -181,49 +145,60 @@ int main()
 	glEnable(GL_CULL_FACE);
 	//glFrontFace(GL_CW);
 
-	Texture textures[] //texture array for floor plane
+	Texture textures[] //old texture array for floor plane
 	{
 		//load textures for floor plane:			  				  
 		Texture("Assets/Textures/planks.png", "diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
-		Texture("Assets/Textures/planksSpec.png", "specular", 1, GL_RED, GL_UNSIGNED_BYTE) //the color channel is only red bc we only have 1 channel. white = bright black = dar
+		//Texture("Assets/Textures/planksSpec.png", "specular", 1, GL_RED, GL_UNSIGNED_BYTE) //the color channel is only red bc we only have 1 channel. white = bright black = dar
 
 	};
 
-	//floor plane:
-	Shader shaderProgram("Assets/Shaders/vertDefault.vert", "Assets/Shaders/fragDefault.frag"); //tee hee!!
-	//create a vector for each type of mesh data for our floor mesh to take in. 
-	std::vector <Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
-	std::vector <GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
-	std::vector <Texture> tex(textures, textures + sizeof(textures) / sizeof(Texture));
-	Mesh floor(verts, ind, tex);
+	
+
+	//this will flip all our material texture coords so that they match with openGL's winding order - i think it goes counter clockwise and stbi loads them clockwise??
+	//stbi_set_flip_vertically_on_load(true);
 
 	// Light cubes creation:		this is exactly the same as the steps above. just a new cube but with the light shader. 
 	Shader lightShader("Assets/Shaders/lightVert.vert", "Assets/Shaders/lightFrag.frag"); 
 	std::vector <Vertex> lightVerts(lightVertices, lightVertices + sizeof(lightVertices) / sizeof(Vertex));
 	std::vector <GLuint> lightInd(lightIndices, lightIndices + sizeof(lightIndices) / sizeof(GLuint));
+	std::vector <Texture> tex(textures, textures + sizeof(textures) / sizeof(Texture));
 	Mesh light(lightVerts, lightInd, tex);
 
-	//plane2:			NOTE: A NEW SHADER PROGRAM MUST BE MADE FOR EACH MESH OBJECT EXCEPT FOR LIGHTS. 
-	Shader plane2("Assets/Shaders/vertDefault.vert", "Assets/Shaders/fragDefault.frag");
-	std::vector <Vertex> verts2(vertices2, vertices2 + sizeof(vertices2) / sizeof(Vertex));
-	std::vector <GLuint> ind2(indices2, indices2 + sizeof(indices2) / sizeof(GLuint));
-	std::vector <Texture> tex2(textures, textures + sizeof(textures) / sizeof(Texture));
-	Mesh floor2(verts2, ind2, tex2);
+	//backpack			NOTE: A NEW SHADER PROGRAM MUST BE MADE FOR EACH MESH OBJECT EXCEPT FOR LIGHTS. Honestly the generation of these NEEDS to be in the model class like 
+	//it is absolutely ridiculous to keep going back and doing all this code where we set the model matrix and how things interact with light etc. when it should all be
+	//handled by Model. PLEASE STREAMLINE.
+	Shader backpackSh("Assets/Shaders/vertDefault.vert", "Assets/Shaders/fragDefault.frag");
+	Model backpack("Assets/Models/Backpack/backpack.obj");
+
+	//Tower
+	Shader towerSh("Assets/Shaders/vertDefault.vert", "Assets/Shaders/fragDefault.frag");
+	Model tower("Assets/Models/Tower/testTower.obj");
+
+	//Barrel Test obj
+	Shader barrelSh("Assets/Shaders/vertDefault.vert", "Assets/Shaders/fragDefault.frag");
+	Model barrel("Assets/Models/Barrel2/Barrel2.obj");
 
 	//light info. color = rgba
 	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	glm::vec3 lightPos = glm::vec3(0.0f, 0.5f, 0.0f);
-	//actually planePos
-	glm::vec3 pyramidPos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::mat4 pyramidModel = glm::mat4(1.0f);
-	pyramidModel = glm::translate(pyramidModel, pyramidPos);
-	//plane2
-	glm::vec3 plane2Pos = glm::vec3(1.0f, 0.0f, 0.0f);
-	glm::mat4 plane2Model = glm::mat4(1.0f);
-	plane2Model = glm::translate(plane2Model, plane2Pos);
 
+	//barrel info
+	glm::vec3 barrelPos = glm::vec3(-1.0f, 2.0f, 0.0f);
+	glm::mat4 barrelModelM = glm::mat4(1.0f);
+	barrelModelM = glm::translate(barrelModelM, barrelPos);
 
+	//tower info
+	glm::vec3 towerPos = glm::vec3(-20.0f, 2.0f, 0.0f);
+	glm::mat4 towerModelM = glm::mat4(1.0f);
+	towerModelM = glm::translate(towerModelM, towerPos);
 
+	//backpack info
+	glm::vec3 backpackPos = glm::vec3(1.0f, 1.0f, 0.0f);
+	glm::mat4 backpackModelM = glm::mat4(1.0f);
+	backpackModelM = glm::translate(backpackModelM, backpackPos);
+	
+	
 
 	//enable depth buffer so openGL knows which triangle to render on top of which
 	glEnable(GL_DEPTH_TEST);
@@ -262,16 +237,22 @@ int main()
 		lightShader.activate();
 		glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(lightModel));
 		lightShader.setVec4("lightColor", lightColor.x, lightColor.y, lightColor.z, lightColor.w);	//these go to fragment shader
-		// set the position in world space and calculate the color of the light on the object, as well as its local position and the lights position. done for every object in scene, and if you move something this process must be done first
-		shaderProgram.activate();
-		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(pyramidModel));
-		shaderProgram.setVec4("lightColor", lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		shaderProgram.setVec3("pointLights[0].position", lightPos.x, lightPos.y, lightPos.z);	//do this but 0,1,2, etc. for every light in the scene. This HEAVILY limits light placement and definitely needs to be automated. 
-		//plane2
-		plane2.activate();
-		glUniformMatrix4fv(glGetUniformLocation(plane2.ID, "model"), 1, GL_FALSE, glm::value_ptr(plane2Model));
-		plane2.setVec4("lightColor", lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		plane2.setVec3("pointLights[0].position", lightPos.x, lightPos.y, lightPos.z);
+		//barrel:
+		barrelSh.activate();
+		glUniformMatrix4fv(glGetUniformLocation(barrelSh.ID, "model"), 1, GL_FALSE, glm::value_ptr(barrelModelM));
+		barrelSh.setVec4("lightColor", lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		barrelSh.setVec3("pointLights[0].position", lightPos.x, lightPos.y, lightPos.z);
+		//Tower:
+		towerSh.activate();
+		glUniformMatrix4fv(glGetUniformLocation(barrelSh.ID, "model"), 1, GL_FALSE, glm::value_ptr(towerModelM));
+		towerSh.setVec4("lightColor", lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		towerSh.setVec3("pointLights[0].position", lightPos.x, lightPos.y, lightPos.z);
+		//set the position in world space and calculate the color of the light on the object, as well as its local position and the lights position. done for every object in scene, and if you move something this process must be done first
+		backpackSh.activate();
+		glUniformMatrix4fv(glGetUniformLocation(backpackSh.ID, "model"), 1, GL_FALSE, glm::value_ptr(backpackModelM));
+		backpackSh.setVec4("lightColor", lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		backpackSh.setVec3("pointLights[0].position", lightPos.x, lightPos.y, lightPos.z);
+
 
 		//update inputs and camera matrix, then export it to vertex shader
 		if (!io.WantCaptureMouse)
@@ -281,9 +262,10 @@ int main()
 		}
 		camera.updateMatrix(45.0f, 0.1f, 100.0f);
 
-		floor2.Draw(plane2, camera);
-		floor.Draw(shaderProgram, camera);
 		light.Draw(lightShader, camera);
+		backpack.Draw(backpackSh, camera);
+		tower.Draw(towerSh, camera);
+		barrel.Draw(barrelSh, camera);
 
 		//imgui stuff begins AFTER everything is drawn and updated for the frame.
 		//Make imgui window:
@@ -308,9 +290,12 @@ int main()
 	ImGui::DestroyContext();
 
 	//delete objects bc end of program:	
-	shaderProgram.Delete();
-	lightShader.Delete();
-	plane2.Delete();
+	//shaderProgram.Delete();
+	//lightShader.Delete();
+	//plane2.Delete();
+	barrelSh.Delete();
+	towerSh.Delete();
+	backpackSh.Delete();
 	//delete window
 	glfwDestroyWindow(window);
 	//terminate GLFW:

@@ -1,5 +1,9 @@
 #include <Graphics/Texture.h>
 
+Texture::Texture()
+{
+}
+
 Texture::Texture(const char* imagePath, const char* texType, GLuint slot, GLenum format, GLenum pixelType)
 {
 	//Basically the process here, like most of openGL, is to create a texture object and then fill it with your texture data and texture params.

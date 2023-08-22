@@ -28,7 +28,7 @@ public:
 	int height;
 
 	float speed = 0.001f;
-	float sensitivity = 100.0f;
+	float sensitivity = 100.0f; //on the off chance there are two mouses plugged in, use primary mouse. shit gets weird if you dont. .	
 
 	Camera(int width, int height, glm::vec3 position);
 

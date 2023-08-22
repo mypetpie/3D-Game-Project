@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>Game/Source/;Game/include/;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glfw-3.3.8.bin.WIN64\lib-vc2022;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -92,12 +92,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\imgui;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glad\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,14 +108,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\imgui;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glad\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,12 +124,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\imgui;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glad\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,14 +140,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\imgui;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\vendor\glad\include;C:\Users\Ramona Smith\source\repos\3D Game Project\3D Game Project\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\imgui;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glad\include;C:\Users\Ramona Smith\Desktop\OGL3D Game\3D-Game-Project\3D Game Project\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,21 +160,26 @@
     <ClCompile Include="Game\Source\GraphicsSrc\VAO.cpp" />
     <ClCompile Include="Game\Source\GraphicsSrc\Texture.cpp" />
     <ClCompile Include="Game\Source\GraphicsSrc\Mesh.cpp" />
-    <ClCompile Include="vendor\glad\src\glad.c" />
-    <ClCompile Include="vendor\glad\src\glad_wgl.c" />
-    <ClCompile Include="vendor\imgui\imgui.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Libraries\glad\src\glad.c" />
+    <ClCompile Include="Libraries\glad\src\glad_wgl.c" />
+    <ClCompile Include="Libraries\imgui\imgui.cpp" />
+    <ClCompile Include="Libraries\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Libraries\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Libraries\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Libraries\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Libraries\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Libraries\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Game\Source\GraphicsSrc\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Models\Backpack\backpack.mtl" />
+    <None Include="Assets\Models\Barrel2\Barrel2.mtl" />
+    <None Include="Assets\Models\Tower\testTower.mtl" />
     <None Include="Assets\Shaders\fragDefault.frag" />
     <None Include="Assets\Shaders\lightFrag.frag" />
     <None Include="Assets\Shaders\lightVert.vert" />
     <None Include="Assets\Shaders\vertDefault.vert" />
+    <None Include="Libraries\assimp\assimp-vc143-mtd.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\include\Controls\Camera.h" />
@@ -185,20 +190,34 @@
     <ClInclude Include="Game\include\Info.h" />
     <ClInclude Include="Game\include\Graphics\Texture.h" />
     <ClInclude Include="Game\include\Graphics\Mesh.h" />
-    <ClInclude Include="vendor\imgui\imconfig.h" />
-    <ClInclude Include="vendor\imgui\imgui.h" />
-    <ClInclude Include="vendor\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="vendor\imgui\imgui_internal.h" />
-    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
-    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
-    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="Libraries\imgui\imconfig.h" />
+    <ClInclude Include="Libraries\imgui\imgui.h" />
+    <ClInclude Include="Libraries\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Libraries\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Libraries\imgui\imgui_internal.h" />
+    <ClInclude Include="Libraries\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Libraries\imgui\imstb_textedit.h" />
+    <ClInclude Include="Libraries\imgui\imstb_truetype.h" />
+    <ClInclude Include="Game\include\Graphics\Model.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Models\Backpack\ao.jpg" />
+    <Image Include="Assets\Models\Backpack\diffuse.jpg" />
+    <Image Include="Assets\Models\Backpack\normal.png" />
+    <Image Include="Assets\Models\Backpack\roughness.jpg" />
+    <Image Include="Assets\Models\Backpack\specular.jpg" />
+    <Image Include="Assets\Models\Barrel2\diffuse.jpg" />
+    <Image Include="Assets\Models\Tower\diffuse.jpg" />
     <Image Include="Assets\Textures\planks.png" />
     <Image Include="Assets\Textures\planksSpec.png" />
     <Image Include="Assets\Textures\popcat.png" />
     <Image Include="Assets\Textures\stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libraries\assimp\lib\assimp-vc143-mtd.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Assets\Models\Backpack\source_attribution.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
