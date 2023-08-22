@@ -1,3 +1,3 @@
 # 3D Game Project
 
-This is a very basic 3D mesh renderer that I built. It includes a light, and a mesh. Thats really it. See each header file for more info on what each class does.
+This is a very basic 3D renderer that I built. It includes several options for lighting, and some test models. Thats really it so far! 
