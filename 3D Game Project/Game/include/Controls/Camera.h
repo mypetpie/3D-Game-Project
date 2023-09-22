@@ -18,7 +18,7 @@ class Camera
 {
 public:
 	glm::vec3 position;
-	glm::vec3 orientation = glm::vec3(0.0f, 0.0f, -1.0f);	//direction camera faces. toward negative Z
+	glm::vec3 orientation = glm::vec3(0.0f, 0.0f, -1.0f);	//direction camera faces. toward negative Z, which is backwards and not forwards lol.
 	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::mat4 cameraMatrix = glm::mat4(1.0f);
 
@@ -27,12 +27,13 @@ public:
 	int width;
 	int height;
 
-	float speed = 0.001f;
-	float sensitivity = 100.0f; //on the off chance there are two mouses plugged in, use primary mouse. shit gets weird if you dont. .	
+	float speed = 0.25f; //.001
+	float sensitivity = 10.0f; //on the off chance there are two mouses plugged in, use primary mouse. shit gets weird if you dont. .	
 
 	Camera(int width, int height, glm::vec3 position);
 
-	void updateMatrix(float FOVdeg, float nearPlane, float farPlane); //compute camera matrix
+	//compute camera matrix. nearPlane: how close before things start culling, farPlane: how far away before things start culling.
+	void updateMatrix(float FOVdeg, float nearPlane, float farPlane); 
 	void sendMatrix(Shader& shader, const char* uniform); //send matrices to shader. this is in its own seperate function so tht we can calculate the perspective of multiple objects in scene 
 	void Inputs(GLFWwindow* window);
 };

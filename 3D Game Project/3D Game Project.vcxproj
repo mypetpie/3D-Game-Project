@@ -170,6 +170,7 @@
     <ClCompile Include="Libraries\imgui\imgui_tables.cpp" />
     <ClCompile Include="Libraries\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Game\Source\GraphicsSrc\Model.cpp" />
+    <ClCompile Include="Game\Source\Game ObjSrc\TerrainSrc\TerrainObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Backpack\backpack.mtl" />
@@ -178,10 +179,13 @@
     <None Include="Assets\Shaders\fragDefault.frag" />
     <None Include="Assets\Shaders\lightFrag.frag" />
     <None Include="Assets\Shaders\lightVert.vert" />
+    <None Include="Assets\Shaders\terrainFrag.frag" />
+    <None Include="Assets\Shaders\terrainVert.vert" />
     <None Include="Assets\Shaders\vertDefault.vert" />
     <None Include="Libraries\assimp\assimp-vc143-mtd.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\include\Game Objects\Lights\PointLight.h" />
     <ClInclude Include="Game\include\Controls\Camera.h" />
     <ClInclude Include="Game\include\Graphics\Shader.h" />
     <ClInclude Include="Game\include\Graphics\VBO.h" />
@@ -199,8 +203,14 @@
     <ClInclude Include="Libraries\imgui\imstb_textedit.h" />
     <ClInclude Include="Libraries\imgui\imstb_truetype.h" />
     <ClInclude Include="Game\include\Graphics\Model.h" />
+    <ClInclude Include="Game\include\Game Objects\Terrain\TerrainObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Heightmaps\iceland_heightmap.png" />
+    <Image Include="Assets\Heightmaps\TestWorld2\diffuse.png" />
+    <Image Include="Assets\Heightmaps\TestWorld2\testWorld2.png" />
+    <Image Include="Assets\Heightmaps\TestWorld\TestWorld.png" />
+    <Image Include="Assets\Heightmaps\TestWorld\diffuse.png" />
     <Image Include="Assets\Models\Backpack\ao.jpg" />
     <Image Include="Assets\Models\Backpack\diffuse.jpg" />
     <Image Include="Assets\Models\Backpack\normal.png" />

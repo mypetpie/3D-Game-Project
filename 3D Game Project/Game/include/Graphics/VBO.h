@@ -13,15 +13,15 @@
 	The VAO does this every time a new VAO is created - it binds the VBO, then uses glVertexAttribPointer to know what to do with it, then unbinds it when the VAO is
 	created. 
 
-	Of course, at the end of its use, it can be deleted from memory using Delete()
+	At the end of its use, it can be deleted from memory using Delete()
 */
 
 //basically just abstracts the information for each point that we had previously hardcoded in our VBO. 
 struct Vertex
 {
 	
-	glm::vec3 position;
-	glm::vec3 normal;
+	glm::vec3 position; // position in world space
+	glm::vec3 normal;   // orientation of the surface of the vertex. Defined as the vector which is perpendicular to a plane that is tangent to the surface at position.
 	glm::vec3 color; 
 	glm::vec2 texUV;
 };

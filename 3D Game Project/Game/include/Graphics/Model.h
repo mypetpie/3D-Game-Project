@@ -21,13 +21,28 @@ class Model
 private:
 	std::vector<Texture> textures_loaded;
 public:
-	Model(std::string path) 
+	glm::vec3 modelPos = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::mat4 modelM = glm::mat4(1.0f);
+
+	Shader shaderProgram = Shader("Assets/Shaders/vertDefault.vert", "Assets/Shaders/fragDefault.frag");
+
+	Model(std::string path)
 	{
 		loadModel(path);
+		modelM = glm::translate(modelM, modelPos);
 	}
 
-	void Draw(Shader& shader, Camera& camera);
+	/*
+	set the position in world space and calculate the color of the light on the object, as well as its local position and the lights position. Then, draw it.
+	done for every object in scene, and if you move something this process must be done first
+	*/
+	void Draw(Camera& camera, glm::vec3 lightPos, glm::vec4 lightCol);
 
+	//set position of model in real-time
+	void setPos(glm::vec3 pos);
+	
+	//Delete shader program (and at some point object data) to clear memory at end of use.
+	void delModelSh();
 private:
 	//model data
 	std::vector<Mesh> meshes;

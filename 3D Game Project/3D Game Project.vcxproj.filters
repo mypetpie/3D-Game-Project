@@ -72,6 +72,9 @@
     <ClCompile Include="Game\Source\GraphicsSrc\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Source\Game ObjSrc\TerrainSrc\TerrainObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\vertDefault.vert" />
@@ -82,6 +85,8 @@
     <None Include="Assets\Models\Backpack\backpack.mtl" />
     <None Include="Assets\Models\Barrel2\Barrel2.mtl" />
     <None Include="Assets\Models\Tower\testTower.mtl" />
+    <None Include="Assets\Shaders\terrainFrag.frag" />
+    <None Include="Assets\Shaders\terrainVert.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\include\Graphics\Shader.h">
@@ -135,6 +140,12 @@
     <ClInclude Include="Game\include\Graphics\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\include\Game Objects\Lights\PointLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\include\Game Objects\Terrain\TerrainObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\popcat.png">
@@ -168,6 +179,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\Models\Tower\diffuse.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Heightmaps\iceland_heightmap.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Heightmaps\TestWorld\TestWorld.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Heightmaps\TestWorld\diffuse.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Heightmaps\TestWorld2\diffuse.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Heightmaps\TestWorld2\testWorld2.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

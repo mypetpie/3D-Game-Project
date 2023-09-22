@@ -34,7 +34,7 @@ void main()
 	//colors from vertex data
 	color = aColor;
 	//uv coords from vertex data
-	texCoords = aTex;
++	texCoords = aTex;
 	
 
 	// Outputs the coords of all vertices in proper perspective

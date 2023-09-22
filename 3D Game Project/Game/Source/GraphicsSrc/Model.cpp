@@ -1,10 +1,32 @@
 #include <Graphics/Model.h>
 
-//im not sure whether or not having the camera as part of the draw function is going to cause problems later. At the moment I don't see why it would.
-void Model::Draw(Shader& shader, Camera& camera)
+
+void Model::Draw(Camera& camera, glm::vec3 lightPos, glm::vec4 lightCol)
 {
+	
+
+	shaderProgram.activate();
+	//inform shader of model matrix values
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(modelM));
+	shaderProgram.setVec4("lightColor", lightCol.x, lightCol.y, lightCol.z, lightCol.w);
+	shaderProgram.setVec3("pointLights[0].position", lightPos.x, lightPos.y, lightPos.z); //this must be done for eachc point light in scene. i.e. pointlights[1] pointlights[2] etc.
+
+	//draw object
 	for (unsigned int i = 0; i < meshes.size(); i++)
-		meshes[i].Draw(shader, camera);
+		meshes[i].Draw(shaderProgram, camera);
+
+
+}
+
+void Model::setPos(glm::vec3 pos)
+{
+	modelPos = pos;
+	modelM = glm::translate(modelM, modelPos);
+}
+
+void Model::delModelSh()
+{
+	shaderProgram.Delete();
 }
 
 void Model::loadModel(std::string path)
